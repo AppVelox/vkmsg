@@ -56,7 +56,7 @@ class VkClient(object):
         msg = message.to_dict()
         msg['user_id'] = user_id
         if msg.get('keyboard'):
-            msg['keyboard'] = json.dumps(msg['keyboard'])
+            msg['keyboard'] = json.dumps(msg['keyboard'], ensure_ascii=False).encode("utf-8")
         result = self.post_request('messages.send', msg)
         if 'error' in result:
             raise VkError(**result['error'])
