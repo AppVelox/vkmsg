@@ -14,7 +14,6 @@ class VkClient(object):
         self.group_id = group_id
         self._vk_api_url = 'https://api.vk.com/method'
         self._api_version = api_version
-        self.callback_confirmation_code = self.get_callback_confirmation_code()['code']
         self._text_message_processor = None
         self._callback_processor = None
 
@@ -66,7 +65,7 @@ class VkClient(object):
     def get_callback_confirmation_code(self):
         result = self.post_request('groups.getCallbackConfirmationCode')
         if 'error' in result:
-            raise VkError(**result['error '])
+            raise VkError(**result['error'])
         return result['response']
 
     def set_webhook(self, url: str, title: str):
