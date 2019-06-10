@@ -2,7 +2,8 @@ from .keyboards import Keyboard
 
 
 class Message(object):
-    def __init__(self, message: str, keyboard: Keyboard = None, lat: float = None, long: float = None):
+    def __init__(self, message: str, keyboard: Keyboard = None, lat: float = None, long: float = None,
+                 attachment: str = None):
         if not isinstance(message, str):
             raise TypeError('message must be an instance of str')
         if keyboard is not None:
@@ -12,6 +13,7 @@ class Message(object):
         self.keyboard = keyboard
         self.lat = lat
         self.long = long
+        self.attachment = attachment
 
     def to_dict(self):
         res = {
@@ -22,4 +24,6 @@ class Message(object):
             res['long'] = self.long
         if self.keyboard:
             res['keyboard'] = self.keyboard.to_dict()
+        if self.attachment:
+            res['attachment'] = self.attachment
         return res
