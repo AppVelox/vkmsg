@@ -23,6 +23,8 @@ class Button(object):
         if self.type != "text":
             if data['action'].get('label'):
                 del data['action']['label']
+            if data.get('color'):
+                del data['color']
         return data
 
 
