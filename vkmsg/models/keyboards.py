@@ -1,5 +1,5 @@
 class Button(object):
-    def __init__(self, label: str, payload: str, color: str = "primary"):
+    def __init__(self, label: str, payload: str, btn_type: str = "text", color: str = "primary"):
         if not isinstance(label, str):
             raise TypeError('label must be an instance of str')
         if not isinstance(payload, str):
@@ -9,16 +9,21 @@ class Button(object):
         self.label = label
         self.payload = payload
         self.color = color
+        self.type = btn_type
 
     def to_dict(self):
-        return {
+        data = {
             'action': {
-                'type': 'text',
+                'type': self.type,
                 'label': self.label,
                 'payload': self.payload
             },
             'color': self.color
         }
+        if self.type != "text":
+            if data['action'].get('label'):
+                del data['action']['label']
+        return data
 
 
 class Keyboard(object):

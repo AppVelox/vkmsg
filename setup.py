@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="vkmsg",
-    version="0.1.0",
+    version="0.1.1",
     author="Appvelox LLC",
     author_email="team@appvelox.ru",
     description="Simple but yet functional library for building VK bots",
